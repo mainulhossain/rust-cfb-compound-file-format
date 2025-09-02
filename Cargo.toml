@@ -9,6 +9,9 @@ license = "MIT"
 readme = "README.md"
 edition = "2018"
 
+[lib]
+crate-type = ["staticlib"]
+
 [dependencies]
 fnv = "1.0"
 icu_casemap = "1.5"

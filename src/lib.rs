@@ -45,6 +45,8 @@
 
 #![warn(missing_docs)]
 
+pub mod ffi;
+
 use std::fmt;
 use std::fs;
 use std::io::{self, Read, Seek, SeekFrom, Write};
