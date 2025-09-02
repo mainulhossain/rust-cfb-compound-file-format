@@ -1,6 +1,7 @@
 use std::io;
 use std::path::PathBuf;
 
+use cfb::Entry;
 use clap::{Parser, Subcommand};
 use time::OffsetDateTime;
 use uuid::Uuid;
@@ -47,7 +48,7 @@ fn split(path: &str) -> (PathBuf, PathBuf) {
     }
 }
 
-fn list_entry(name: &str, entry: &cfb::Entry, long: bool) {
+fn list_entry(name: &str, entry: &Entry, long: bool) {
     if !long {
         println!("{}", entry.name());
         return;
@@ -94,7 +95,7 @@ fn main() {
         Command::Chcls { clsid, path } => {
             for path in path {
                 let (comp_path, inner_path) = split(&path);
-                let mut comp = cfb::open(&comp_path).unwrap();
+                let mut comp = cfb::open_rw(&comp_path).unwrap();
                 comp.set_storage_clsid(inner_path, clsid).unwrap();
                 comp.flush().unwrap();
             }
